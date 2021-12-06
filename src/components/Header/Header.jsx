@@ -1,11 +1,25 @@
 import React from "react";
 
-const Header = (props) => {
+import Menu from "./Menu";
+
+import './Header.css';
+
+const Header = ({name, topMenu}) => {
     return (
-        <>
-            <h3>{props.title}</h3>
-            <p>{props.text}</p>
-        </>
+        <header>
+            <div className='container'>
+                <h1>
+                    <a href='/'>
+                        {name}
+                    </a>
+                </h1>
+                <Menu topMenu={topMenu} />
+                <div className='buttons'>
+                    <a href='/login'>Login</a>
+                    <a href='/registration'>Registration</a>
+                </div>
+            </div>
+        </header>
     )
 }
 
