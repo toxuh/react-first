@@ -1,9 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import Header from '../Header/Header';
 import Main from "../Main/Main";
+import Modal from "../Modal/Modal2";
 
 const App = () => {
+    const [modal, setModal] = useState(false)
+
     const topMenu = [
         {
             name: 'Home',
@@ -19,10 +22,19 @@ const App = () => {
         }
     ];
 
+    const showModal = () => {
+        setModal(true);
+    }
+
+    const hideModal = () => {
+        setModal(false)
+    }
+
     return (
         <>
             <Header name='Company name' topMenu={topMenu} />
-            <Main />
+            <Main showModal={showModal} />
+            {modal && <Modal hideModal={hideModal} />}
         </>
     )
 };

@@ -1,12 +1,9 @@
-import React, {useState} from "react";
+import React from "react";
 
-const Main = () => {
-    const [text, setText] = useState('')
-
+const Main = ({showModal}) => {
     return (
         <div style={{textAlign: 'center'}}>
-            <p>{text}</p>
-            <button onClick={() => setText(text + '1')}>Show</button>
+            <button onClick={showModal}>Show</button>
         </div>
     )
 }
