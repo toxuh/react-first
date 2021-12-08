@@ -1,41 +1,39 @@
 import React, {useState} from 'react';
 
-import Header from '../Header/Header';
-import Main from "../Main/Main";
-import Modal from "../Modal/Modal2";
+import './App.css';
 
 const App = () => {
-    const [modal, setModal] = useState(false)
+    const [items, setItems] = useState([]);
+    const [inputText, setText] = useState('');
 
-    const topMenu = [
-        {
-            name: 'Home',
-            link: '/'
-        },
-        {
-            name: 'About',
-            link: '/about'
-        },
-        {
-            name: 'Contact',
-            link: '/contact'
+    const addItem = () => {
+        const item = {
+            id: Date.now().toString(),
+            date: new Date(),
+            text: inputText,
         }
-    ];
 
-    const showModal = () => {
-        setModal(true);
-    }
-
-    const hideModal = () => {
-        setModal(false)
-    }
+        setItems([...items, item])
+    };
 
     return (
-        <>
-            <Header name='Company name' topMenu={topMenu} />
-            <Main showModal={showModal} />
-            {modal && <Modal hideModal={hideModal} />}
-        </>
+        <div className='App'>
+            <h1>To-do list:</h1>
+            <div>
+                <input type='text' onChange={(e) => setText(e.target.value)} />
+                <button onClick={() => addItem()}>Submit</button>
+            </div>
+            <ul>
+                {items.map(({id, date, text}) => {
+                    return (
+                        <li key={id}>
+                            <span>{`${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`}</span>
+                            <p>{text}</p>
+                        </li>
+                    )
+                })}
+            </ul>
+        </div>
     )
 };
 
